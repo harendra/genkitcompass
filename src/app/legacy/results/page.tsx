@@ -31,6 +31,8 @@ export default function LegacyResultsPage({
 }) {
   const { destination, checkIn, checkOut, guests } = searchParams;
   const { toString: searchParamsToString } = useSearchParams();
+  const newSearchParams = useSearchParams(); 
+  //const [currentParams] = useSearchParams();
   const router = useRouter();
 
   const totalGuests = guests ? parseInt(guests as string, 10) : 1;
@@ -67,8 +69,11 @@ export default function LegacyResultsPage({
             image={place.imageUrl}
             tags={place.tags as unknown as Tag[]}
             onClick={() => {
+              //const newParams = new URLSearchParams(currentParams);
+              //alert(newSearchParams.toString())
               router.push(
-                `${LEGACY.ACTIVITIES}?${searchParamsToString()}&place=${place.ref}`,
+                //`${LEGACY.ACTIVITIES}?${searchParamsToString()}&place=${place.ref}`,
+                `${LEGACY.ACTIVITIES}?${newSearchParams.toString()}&place=${place.name}`,
               );
             }}
           />
